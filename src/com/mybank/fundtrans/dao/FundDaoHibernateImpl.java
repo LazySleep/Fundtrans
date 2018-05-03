@@ -2,8 +2,6 @@ package com.mybank.fundtrans.dao;
 
 import com.mybank.fundtrans.domain.Fund;
 import com.mybank.fundtrans.util.HibernateHelper;
-import com.mybank.fundtrans.util.HibernateUtil;
-import org.hibernate.Session;
 
 import java.util.List;
 
@@ -30,17 +28,10 @@ public class FundDaoHibernateImpl implements FundDao {
 
     @Override
     public Fund findById(int fundNo) {
-        Fund fund = null;
-        try {
-            Session session = HibernateUtil.getSession();
-            fund = (Fund) session.createQuery(" FROM Fund WHERE id = ? ")
-                    .setParameter(0, fundNo)
-                    .uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            HibernateUtil.closeSession();
+        Object obj;
+        if((obj=new HibernateHelper().findBySomething("Fund","id",fundNo))!=null){
+            return (Fund)obj;
         }
-        return fund;
+        return null;
     }
 }

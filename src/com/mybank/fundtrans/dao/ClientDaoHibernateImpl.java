@@ -2,8 +2,6 @@ package com.mybank.fundtrans.dao;
 
 import com.mybank.fundtrans.domain.Client;
 import com.mybank.fundtrans.util.HibernateHelper;
-import com.mybank.fundtrans.util.HibernateUtil;
-import org.hibernate.Session;
 
 import java.util.List;
 
@@ -31,33 +29,19 @@ public class ClientDaoHibernateImpl implements ClientDao {
 
     @Override
     public Client findByName(String name) {
-        Client client = null;
-        try {
-            Session session = HibernateUtil.getSession();
-            client = (Client) session.createQuery(" FROM Client WHERE name = ? ")
-                    .setParameter(0, name)
-                    .uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            HibernateUtil.closeSession();
+        Object obj;
+        if ((obj = new HibernateHelper().findBySomething("Client", "name", name)) != null) {
+            return (Client) obj;
         }
-        return client;
+        return null;
     }
 
     @Override
     public Client findByIDCard(String IDcard) {
-        Client client = null;
-        try {
-            Session session = HibernateUtil.getSession();
-            client = (Client) session.createQuery(" FROM Client WHERE idcard = ? ")
-                    .setParameter(0, IDcard)
-                    .uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            HibernateUtil.closeSession();
+        Object obj;
+        if ((obj = new HibernateHelper().findBySomething("Client", "idcard", IDcard)) != null) {
+            return (Client) obj;
         }
-        return client;
+        return null;
     }
 }

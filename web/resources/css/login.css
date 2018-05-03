@@ -1,4 +1,48 @@
-body{
+* {
     margin: 0;
     padding: 0;
+}
+
+body {
+    background: url("../images/bg-body.gif");
+}
+
+#frm {
+    background: url("../images/login_bg0.png") no-repeat;
+    width: 397px;
+    height: 353px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -180px 0 0 -198.5px;
+}
+
+form {
+    width: 357px;
+    height: 150px;
+    margin-top: 110px;
+    padding: 20px;
+}
+
+.input {
+    width: 250px;
+    height: 80px;
+    margin: 0 auto;
+}
+.input span{
+    height: 30px;
+}
+.input input{
+    margin-top: 10px;
+    width: 100%;
+    height: 30px;
+}
+
+#btn {
+    background: url("../images/bg-menu-item-green.gif");
+    height: 53px;
+    width: 100%;
+    text-align: center;
+    background-size: cover;
+    color: white;
 }

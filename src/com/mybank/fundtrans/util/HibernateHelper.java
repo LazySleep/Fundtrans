@@ -1,6 +1,6 @@
 package com.mybank.fundtrans.util;
 
-import com.mybank.fundtrans.domain.Fund;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -11,9 +11,8 @@ public class HibernateHelper {
     public List findAll(String tableName) {
         List list = null;
         try {
-            String hql = "FROM " + tableName;
             Session session = HibernateUtil.getSession();
-            list = session.createQuery(hql).list();
+            list = session.createQuery("FROM " + tableName).list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -61,7 +60,18 @@ public class HibernateHelper {
         }
     }
 
-    public Fund findById(int fundNo) {
-        return null;
+    public Object findBySomething(String tableName, String var1, Object var2) {
+        Object obj = null;
+        try {
+            Session session = HibernateUtil.getSession();
+            obj = session.createQuery(" FROM " + tableName + " WHERE " + var1 + " = ? ")
+                    .setParameter(0, var2)
+                    .uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            HibernateUtil.closeSession();
+        }
+        return obj;
     }
 }
