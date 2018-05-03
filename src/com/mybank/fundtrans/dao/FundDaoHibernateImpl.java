@@ -1,68 +1,31 @@
 package com.mybank.fundtrans.dao;
 
 import com.mybank.fundtrans.domain.Fund;
+import com.mybank.fundtrans.util.HibernateHelper;
 import com.mybank.fundtrans.util.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.util.List;
 
 public class FundDaoHibernateImpl implements FundDao {
     @Override
     public List findAll() {
-        List funds = null;
-        try {
-            String hql = "FROM Fund";
-            Session session = HibernateUtil.getSession();
-            funds = session.createQuery(hql).list();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            HibernateUtil.closeSession();
-        }
-        return funds;
+        return new HibernateHelper().findAll("Fund");
     }
 
     @Override
     public void insert(Fund fund) {
-        try {
-            Session session = HibernateUtil.getSession();
-            Transaction transaction = session.beginTransaction();
-            session.save(fund);
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            HibernateUtil.closeSession();
-        }
+        new HibernateHelper().insert(fund);
     }
 
     @Override
     public void delete(int fundNo) {
-        try {
-            Session session = HibernateUtil.getSession();
-            Transaction transaction = session.beginTransaction();
-            session.delete(session.get(Fund.class, fundNo));
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            HibernateUtil.closeSession();
-        }
+        new HibernateHelper().delete(Fund.class, fundNo);
     }
 
     @Override
     public void update(Fund fund) {
-        try {
-            Session session = HibernateUtil.getSession();
-            Transaction transaction = session.beginTransaction();
-            session.update(fund);
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            HibernateUtil.closeSession();
-        }
+        new HibernateHelper().update(fund);
     }
 
     @Override
