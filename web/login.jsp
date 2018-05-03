@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>登陆基金交易系统</title>
     <link rel="stylesheet" href="resources/css/login.css" type="text/css" media="screen"/>
+    <script type="text/javascript" src="resources/scripts/jquery-1.3.2.min.js"></script>
     <script language="javascript">
         function checkNull() {
             /*判断是否有空内容*/
@@ -28,18 +29,20 @@
     </script>
 </head>
 <body>
-<form name="form1" action="user/checkUser.action" method="post" onSubmit="return checkNull()">
-    <div class="login-input-box">
-        <span> 用户名:</span>
-        <input name="user.name" type="text" >
-    </div>
-    <div class="login-input-box">
-        <span>密码:</span>
-        <input name="user.password" type="password">
-    </div>
-    <br>
-    <input type="submit" value="登陆"/>
-    <input type="reset" value="重置"/>
-</form>
+<div id="frm">
+    <form name="form1" action="user/checkUser.action" method="post" onSubmit="return checkNull()">
+        <div class="input">
+            <span> 用户名:</span>
+            <br>
+            <input name="user.name" type="text">
+        </div>
+        <div class="input">
+            <span>密码:</span>
+            <br>
+            <input name="user.password" type="password">
+        </div>
+    </form>
+    <input id="btn" type="button" value="登陆"onclick="if(!checkNull())$('form').submit()"/>
+</div>
 </body>
 </html>
