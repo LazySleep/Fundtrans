@@ -1,11 +1,6 @@
+<%@ page import="com.mybank.fundtrans.domain.Client" %>
+<%@ page import="com.mybank.fundtrans.domain.Fund" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.mybank.fundtrans.domain.Fund" %><%--
-  Created by IntelliJ IDEA.
-  User: LazySleep
-  Date: 2018/3/24
-  Time: 9:40
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
@@ -15,7 +10,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>基金产品查询</title>
+    <title>客户信息列表</title>
     <style>
         body {
             margin: 0;
@@ -60,48 +55,54 @@
 
     </style>
     <script type="text/javascript">
-        function deleteRes(id) {
+        function deleteRes(IDCard) {
             if (window.confirm("确认要删除这条数据吗?")) {
                 //跳转
-                window.location = "fund/deleteFund.action?id=" + id;
+                window.location = "client/deleteClient.action?idCard=" + IDCard;
             }
         }
     </script>
 </head>
 <body>
 <%
-    List<Fund> list = (List<Fund>) request.getAttribute("funds");
+    List<Client> list = (List<Client>) request.getAttribute("clients");
 %>
-<p>基金产品查询结果</p>
+<p>客户信息列表</p>
 <table>
     <thead>
     <tr>
-        <td>基金编号</td>
-        <td>基金产品<br>名称</td>
-        <td>基金产品<br>价格</td>
-        <td>基金产品<br>状态</td>
-        <td>基金产品<br>创建时间</td>
+        <td>客户身份证号</td>
+        <td>客户姓名</td>
+        <td>客户性别</td>
+        <td>客户电话</td>
+        <td>客户地址</td>
+        <td>客户邮箱</td>
+        <td>客户兴趣爱好</td>
         <td>操作</td>
     </tr>
     </thead>
     <tbody>
     <%
         if (list != null) {
-            for (Fund f : list) {
+            for (Client clent : list) {
     %>
     <tr>
-        <td><%=f.getId()%>
+        <td><%=clent.getIDCard()%>
         </td>
-        <td><%=f.getName()%>
+        <td><%=clent.getName()%>
         </td>
-        <td><%=f.getPrice()%>
+        <td><%="M".equals(clent.getSex())?"男":"女"%>
         </td>
-        <td><%=f.getStatus()%>
+        <td><%=clent.getPhone()%>
         </td>
-        <td><%=f.getCreateTime() %>
+        <td><%=clent.getAddress() %>
         </td>
-        <td><a href="fund/startUpdateFund.action?id=<%=f.getId()%>">修改</a>&nbsp;/&nbsp;<a
-                href="javascript:deleteRes(<%=f.getId()%>)">删除</a></td>
+        <td><%=clent.getEmail() %>
+        </td>
+        <td><%=clent.getHobby() %>
+        </td>
+        <td><a href="client/startUpdateClient.action?idCard=<%=clent.getIDCard()%>">修改</a>&nbsp;/&nbsp;<a
+                href="javascript:deleteRes('<%=clent.getIDCard()%>')">删除</a></td>
     </tr>
     <%
             }

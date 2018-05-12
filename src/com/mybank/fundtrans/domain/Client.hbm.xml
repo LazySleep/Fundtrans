@@ -4,15 +4,13 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping package="com.mybank.fundtrans.domain">
     <class name="Client" table="client">
-        <id name="IDCard" column="idcard">
-            <generator class="native"/>
-        </id>
+        <id name="IDCard" column="idcard"/>
         <property name="name" column="name" unique="true" not-null="true"/>
         <property name="sex"/>
         <property name="phone"/>
         <property name="address"/>
         <property name="email"/>
         <property name="hobby"/>
-        <property name="creatTime" not-null="true"/>
+        <property name="createTime" not-null="true"/>
     </class>
 </hibernate-mapping>

@@ -63,7 +63,7 @@ public class FundAction extends ActionSupport {
      */
     public String show() {
         funds = fundDao.findAll();
-        ((Map) ActionContext.getContext().get("request")).put("fundList", funds);
+        ((Map) ActionContext.getContext().get("request")).put("funds", funds);
         return "showFunds";
     }
 

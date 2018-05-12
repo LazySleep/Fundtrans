@@ -35,17 +35,35 @@
     </package>
 
     <!-- Add packages here -->
+    <package name="client" namespace="/client" extends="struts-default">
+        <!-- 使用通配符简化配置 -->
+        <action name="*Client" class="com.mybank.fundtrans.controller.ClientAction"
+                method="{1}">
+            <result name="startUpdate">/client/client_update.jsp</result>
+            <result name="showClients">/client/client_list.jsp</result>
+            <result name="success" type="chain">showClient</result>
+        </action>
+        <!-- 用于链接请求 -->
+
+        <action name="*">
+            <result name="success">/client/{1}.jsp</result>
+        </action>
+    </package>
+
+    <!-- Add packages here -->
     <package name="user" namespace="/user" extends="struts-default">
         <!-- 使用通配符简化配置 -->
         <action name="*User" class="com.mybank.fundtrans.controller.UserAction"
                 method="{1}">
             <result name="failed">/login.jsp</result>
-            <result name="success">/index.jsp</result>
+            <result name="success" type="redirect">/index.jsp</result>
         </action>
         <!-- 用于链接请求 -->
 
         <action name="*">
-            <result name="success">/fund/{1}.jsp</result>
+            <result name="success">/user/{1}.jsp</result>
         </action>
     </package>
+
+
 </struts>

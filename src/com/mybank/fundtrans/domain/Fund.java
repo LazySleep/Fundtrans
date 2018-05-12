@@ -76,9 +76,4 @@ public class Fund {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
-
-//    public String toTrTdTag() {
-//        return "<tr><td>" + id + "</td><td>" + name + "</td><td>" + price + "</td><td>"
-//                + description + "</td><td>" + status + "</td><td>" + createTime + "</td></tr>";
-//    }
 }

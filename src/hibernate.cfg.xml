@@ -41,6 +41,7 @@
 		 -->
 		<mapping class="com.mybank.fundtrans.domain.Fund" />
 		<mapping class="com.mybank.fundtrans.domain.User" />
+		<mapping class="com.mybank.fundtrans.domain.Client" />
 		 
 		<!-- 罗列所有持久化类的类名
 		<mapping class="com.mybank.fundtrans.domain.Fund" />
@@ -53,6 +54,7 @@
 
 		<mapping resource="com/mybank/fundtrans/domain/Fund.hbm.xml" />
 		<mapping resource="com/mybank/fundtrans/domain/User.hbm.xml" />
+		<mapping resource="com/mybank/fundtrans/domain/Client.hbm.xml" />
 		<!-- 罗列所有映射文件 
 		<mapping resource="com/mybank/fundtrans/domain/Fund.hbm.xml" />
 		<mapping resource="com/mybank/fundtrans/domain/Client.hbm.xml" />

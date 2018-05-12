@@ -1,3 +1,4 @@
+<%@ page import="com.mybank.fundtrans.domain.User" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 
 <%
@@ -52,6 +53,13 @@
                 $(this).addClass("current");
             });
         })
+        
+        function outLogin() {
+            if(confirm("确认要注销当前账户吗？")){
+                $.get("user/outLoginUser.action");
+                window.parent.location.href="/login.jsp";
+            }
+        }
     </script>
 </head>
 <body class="left">
@@ -64,9 +72,10 @@
                 <a href="" target="dmMain">基金交易平台</a>
             </h1>
             <div id="profile-links">
+                <% User user = (User) request.getSession().getAttribute("user");%>
                 <p>
-                    <a>欢迎您<br></a> <a href="" title="密码修改" target="dmMain">密码修改
-                </a>| <a href="" title="退出系统" target="_top">退出</a>
+                    <a>欢迎您<%=user.getName()%><br></a> <a href="" title="密码修改" target="dmMain">密码修改
+                </a>| <a href="javascript:outLogin()" title="退出系统" target="_top">退出</a>
                 </p>
             </div>
 
@@ -84,8 +93,8 @@
                     客户信息管理
                 </a>
                     <ul>
-                        <li><a href="" target="dmMain">新客户开户</a></li>
-                        <li><a href="" target="dmMain">客户信息列表</a></li>
+                        <li><a href="client/client_add.jsp" target="dmMain">新客户开户</a></li>
+                        <li><a href="client/showClient.action" target="dmMain">客户信息列表</a></li>
                     </ul>
                 </li>
 

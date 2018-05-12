@@ -31,6 +31,12 @@ public class UserAction extends ActionSupport {
         return "failed";
     }
 
+    public String outLogin(){
+        Map session = ActionContext.getContext().getSession();
+        session.remove("user");
+        return "failed";
+    }
+
     public String getName() {
         return name;
     }
